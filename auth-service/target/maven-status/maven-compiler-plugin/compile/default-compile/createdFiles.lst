@@ -1,0 +1,6 @@
+repository\UserRepository.class
+com\example\CICD\AuthServiceApplication.class
+service\UserService.class
+config\SecurityConfig.class
+controller\AuthController.class
+model\User.class

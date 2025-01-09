@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+
+  auth-service:
+    build:
+      context: ./auth-service
+    container_name: auth-service
+    ports:
+      - "8085:8085"
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/authdb
+    depends_on:
+      - mongodb
+
+  cicd-service:
+    build:
+      context: ./cicd-service
+    container_name: cicd-service
+    ports:
+      - "8086:8086"
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/cicddb
+    depends_on:
+      - mongodb
